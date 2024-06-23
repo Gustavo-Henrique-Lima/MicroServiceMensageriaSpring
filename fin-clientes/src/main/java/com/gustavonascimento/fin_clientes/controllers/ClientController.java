@@ -3,6 +3,8 @@ package com.gustavonascimento.fin_clientes.controllers;
 import java.net.URI;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,12 +24,15 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping(value = "/clients")
 public class ClientController {
+	
+	private static Logger logger = LoggerFactory.getLogger(ClientController.class);
 
 	@Autowired
 	private ClientService service;
 
 	@GetMapping
 	public String status() {
+		logger.info("Verificando load balance.");
 		return "Clientes Ok!";
 	}
 
