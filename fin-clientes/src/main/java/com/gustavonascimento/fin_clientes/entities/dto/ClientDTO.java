@@ -1,35 +1,27 @@
-package com.gustavonascimento.fin_clientes.entities;
+package com.gustavonascimento.fin_clientes.entities.dto;
 
 import java.io.Serializable;
-import java.util.Objects;
 import java.util.UUID;
 
-import org.hibernate.annotations.UuidGenerator;
+import com.gustavonascimento.fin_clientes.entities.Client;
 
-import com.gustavonascimento.fin_clientes.entities.dto.ClientDTO;
+import jakarta.persistence.Column;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "tb_clientes")
-public class Client implements Serializable {
+public class ClientDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@UuidGenerator
 	private UUID id;
+	@Column(unique = true)
 	private String cpf;
 	private String nome;
 	private Integer idade;
 	private Integer score;
 
-	public Client() {
+	public ClientDTO() {
 	}
 
-	public Client(UUID id, String cpf, String nome, Integer idade, Integer score) {
+	public ClientDTO(UUID id, String cpf, String nome, Integer idade, Integer score) {
 		this.id = id;
 		this.cpf = cpf;
 		this.nome = nome;
@@ -37,7 +29,7 @@ public class Client implements Serializable {
 		this.score = score;
 	}
 
-	public Client(ClientDTO entity) {
+	public ClientDTO(Client entity) {
 		this.id = entity.getId();
 		this.cpf = entity.getCpf();
 		this.nome = entity.getNome();
@@ -83,23 +75,6 @@ public class Client implements Serializable {
 
 	public void setScore(Integer score) {
 		this.score = score;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(cpf, id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Client other = (Client) obj;
-		return Objects.equals(cpf, other.cpf) && Objects.equals(id, other.id);
 	}
 
 }
