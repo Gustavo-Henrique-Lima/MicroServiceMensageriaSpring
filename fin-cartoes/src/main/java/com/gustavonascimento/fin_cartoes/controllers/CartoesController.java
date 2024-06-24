@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -46,8 +47,8 @@ public class CartoesController {
 		return ResponseEntity.ok(entities);
 	}
 
-	@GetMapping(value = "/cliente={cpf}")
-	public ResponseEntity<List<ClienteCartaoDTO>> getCartoesByCliente(@PathVariable String cpf) {
+	@GetMapping(params = "cpf")
+	public ResponseEntity<List<ClienteCartaoDTO>> getCartoesByCliente(@RequestParam("cpf") String cpf) {
 		List<ClienteCartaoDTO> entities = clienteCartaoService.listCartoesByCpf(cpf);
 		return ResponseEntity.ok(entities);
 	}

@@ -2,11 +2,6 @@ package com.gustavonascimento.fin_avaliador.entities;
 
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "tb_situacao_cliente")
 public class SituacaoCliente {
 
 	private DadosCliente cliente;
