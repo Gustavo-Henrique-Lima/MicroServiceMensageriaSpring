@@ -11,6 +11,7 @@ public class RouteConfig {
 	@Bean
 	public RouteLocator routes(RouteLocatorBuilder builder) {
 		return builder.routes().route(r -> r.path("/clients/**").uri("lb://fin-clientes"))
-				.route(r -> r.path("/cartoes/**").uri("lb://fin-cartoes")).build();
+				.route(r -> r.path("/cartoes/**").uri("lb://fin-cartoes"))
+				.route(r -> r.path("/avaliacoes-credito/**").uri("lb://fin-avaliador")).build();
 	}
 }
