@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gustavonascimento.fin_avaliador.AvaliadorService;
+import com.gustavonascimento.fin_avaliador.controllers.exception.MicroServiceComunicattionException;
+import com.gustavonascimento.fin_avaliador.controllers.exception.ResourceNotFoundException;
 import com.gustavonascimento.fin_avaliador.entities.SituacaoCliente;
 
 @RestController
@@ -24,7 +26,14 @@ public class AvaliadorCreditoController {
 
 	@GetMapping(value = "/situacao-cliente", params = "cpf")
 	public ResponseEntity<SituacaoCliente> consultaSituacaoCliente(@RequestParam("cpf") String cpf) {
-		SituacaoCliente situacaoCliente = service.obterSituacaoCliente(cpf);
-		return ResponseEntity.ok(situacaoCliente);
+		try {
+			SituacaoCliente situacaoCliente = service.obterSituacaoCliente(cpf);
+			return ResponseEntity.ok(situacaoCliente);
+		} catch (ResourceNotFoundException e) {
+			return ResponseEntity.notFound().build();
+		} catch (MicroServiceComunicattionException e) {
+			return ResponseEntity.badRequest().build();
+		}
+
 	}
 }
