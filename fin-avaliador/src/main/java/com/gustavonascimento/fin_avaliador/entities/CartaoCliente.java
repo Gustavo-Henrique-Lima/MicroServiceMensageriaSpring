@@ -6,16 +6,16 @@ import java.util.Objects;
 public class CartaoCliente {
 
 	private String nome;
-	private String bandeira;
-	private BigDecimal limiteLiberado;
+	private String bandeiraCartao;
+	private BigDecimal limiteBasico;
 
 	public CartaoCliente() {
 	}
 
-	public CartaoCliente(String nome, String bandeira, BigDecimal limiteLiberado) {
+	public CartaoCliente(String nome, String bandeiraCartao, BigDecimal limiteBasico) {
 		this.nome = nome;
-		this.bandeira = bandeira;
-		this.limiteLiberado = limiteLiberado;
+		this.bandeiraCartao = bandeiraCartao;
+		this.limiteBasico = limiteBasico;
 	}
 
 	public String getNome() {
@@ -26,25 +26,25 @@ public class CartaoCliente {
 		this.nome = nome;
 	}
 
-	public String getBandeira() {
-		return bandeira;
+	public String getBandeiraCartao() {
+		return bandeiraCartao;
 	}
 
-	public void setBandeira(String bandeira) {
-		this.bandeira = bandeira;
+	public void setBandeiraCartao(String bandeiraCartao) {
+		this.bandeiraCartao = bandeiraCartao;
 	}
 
-	public BigDecimal getLimiteLiberado() {
-		return limiteLiberado;
+	public BigDecimal getLimiteBasico() {
+		return limiteBasico;
 	}
 
-	public void setLimiteLiberado(BigDecimal limiteLiberado) {
-		this.limiteLiberado = limiteLiberado;
+	public void setLimiteBasico(BigDecimal limiteBasico) {
+		this.limiteBasico = limiteBasico;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(bandeira, nome);
+		return Objects.hash(bandeiraCartao, nome);
 	}
 
 	@Override
@@ -56,7 +56,12 @@ public class CartaoCliente {
 		if (getClass() != obj.getClass())
 			return false;
 		CartaoCliente other = (CartaoCliente) obj;
-		return Objects.equals(bandeira, other.bandeira) && Objects.equals(nome, other.nome);
+		return Objects.equals(bandeiraCartao, other.bandeiraCartao) && Objects.equals(nome, other.nome);
 	}
 
+	@Override
+	public String toString() {
+		return "CartaoCliente [nome=" + nome + ", bandeiraCartao=" + bandeiraCartao + ", limiteBasico=" + limiteBasico
+				+ "]";
+	}
 }

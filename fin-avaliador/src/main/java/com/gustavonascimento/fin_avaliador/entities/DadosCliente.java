@@ -7,13 +7,17 @@ public class DadosCliente {
 
 	private UUID id;
 	private String nome;
+	private Integer idade;
+	private Integer score;
 
 	public DadosCliente() {
 	}
 
-	public DadosCliente(UUID id, String nome) {
+	public DadosCliente(UUID id, String nome, Integer idade, Integer score) {
 		this.id = id;
 		this.nome = nome;
+		this.idade = idade;
+		this.score = score;
 	}
 
 	public UUID getId() {
@@ -32,6 +36,22 @@ public class DadosCliente {
 		this.nome = nome;
 	}
 
+	public Integer getIdade() {
+		return idade;
+	}
+
+	public void setIdade(Integer idade) {
+		this.idade = idade;
+	}
+
+	public Integer getScore() {
+		return score;
+	}
+
+	public void setScore(Integer score) {
+		this.score = score;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, nome);
@@ -48,5 +68,12 @@ public class DadosCliente {
 		DadosCliente other = (DadosCliente) obj;
 		return Objects.equals(id, other.id) && Objects.equals(nome, other.nome);
 	}
+
+	@Override
+	public String toString() {
+		return "DadosCliente [id=" + id + ", nome=" + nome + ", idade=" + idade + ", score=" + score + "]";
+	}
+	
+	
 
 }
