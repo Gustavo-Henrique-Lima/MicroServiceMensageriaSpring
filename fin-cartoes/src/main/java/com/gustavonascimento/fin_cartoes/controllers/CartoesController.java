@@ -41,13 +41,13 @@ public class CartoesController {
 	}
 
 	@GetMapping(params = "renda")
-	public ResponseEntity<List<CartaoDTO>> getCartaoByRenda(@RequestParam("renda") Long renda) {
+	public ResponseEntity<List<CartaoDTO>> getCartaoByRenda(@RequestParam Long renda) {
 		List<CartaoDTO> entities = cartaoService.getCartoesRendaMenorIgual(renda);
 		return ResponseEntity.ok(entities);
 	}
 
 	@GetMapping(params = "cpf")
-	public ResponseEntity<List<ClienteCartaoDTO>> getCartoesByCliente(@RequestParam("cpf") String cpf) {
+	public ResponseEntity<List<ClienteCartaoDTO>> getCartoesByCliente(@RequestParam String cpf) {
 		List<ClienteCartaoDTO> entities = clienteCartaoService.listCartoesByCpf(cpf);
 		return ResponseEntity.ok(entities);
 	}
