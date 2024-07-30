@@ -14,4 +14,7 @@ public interface CartoesResourceClient {
 
 	@GetMapping(params = "cpf")
 	ResponseEntity<List<CartaoCliente>> getCartoesByCliente(@RequestParam("cpf") String cpf);
+	
+	@GetMapping(params = "renda")
+	ResponseEntity<List<CartaoCliente>> getCartaoByRenda(@RequestParam("renda") Long renda);
 }

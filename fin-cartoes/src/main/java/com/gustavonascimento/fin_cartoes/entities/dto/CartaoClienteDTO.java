@@ -1,26 +1,28 @@
-package com.gustavonascimento.fin_avaliador.entities;
+package com.gustavonascimento.fin_cartoes.entities.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Objects;
 import java.util.UUID;
 
-public class CartaoCliente implements Serializable {
+import com.gustavonascimento.fin_cartoes.entities.CartaoCliente;
+import com.gustavonascimento.fin_cartoes.entities.enums.BandeiraCartao;
+
+public class CartaoClienteDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private UUID id;
 	private String nome;
-	private String bandeiraCartao;
+	private BandeiraCartao bandeiraCartao;
 	private BigDecimal limiteBasico;
 	private String tipo;
 	private LocalDate vencimento;
 
-	public CartaoCliente() {
+	public CartaoClienteDTO() {
 	}
 
-	public CartaoCliente(UUID id, String nome, String bandeiraCartao, BigDecimal limiteBasico, String tipo,
+	public CartaoClienteDTO(UUID id, String nome, BandeiraCartao bandeiraCartao, BigDecimal limiteBasico, String tipo,
 			LocalDate vencimento) {
 		this.id = id;
 		this.nome = nome;
@@ -28,6 +30,15 @@ public class CartaoCliente implements Serializable {
 		this.limiteBasico = limiteBasico;
 		this.tipo = tipo;
 		this.vencimento = vencimento;
+	}
+
+	public CartaoClienteDTO(CartaoCliente entity) {
+		this.id = entity.getId();
+		this.nome = entity.getNome();
+		this.bandeiraCartao = entity.getBandeiraCartao();
+		this.limiteBasico = entity.getLimiteBasico();
+		this.tipo = entity.getTipo();
+		this.vencimento = entity.getVencimento();
 	}
 
 	public UUID getId() {
@@ -46,11 +57,11 @@ public class CartaoCliente implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getBandeiraCartao() {
+	public BandeiraCartao getBandeiraCartao() {
 		return bandeiraCartao;
 	}
 
-	public void setBandeiraCartao(String bandeiraCartao) {
+	public void setBandeiraCartao(BandeiraCartao bandeiraCartao) {
 		this.bandeiraCartao = bandeiraCartao;
 	}
 
@@ -78,20 +89,4 @@ public class CartaoCliente implements Serializable {
 		this.vencimento = vencimento;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(bandeiraCartao, nome);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		CartaoCliente other = (CartaoCliente) obj;
-		return Objects.equals(bandeiraCartao, other.bandeiraCartao) && Objects.equals(nome, other.nome);
-	}
 }

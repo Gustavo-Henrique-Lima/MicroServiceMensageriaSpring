@@ -25,13 +25,13 @@ public class ClienteCartao implements Serializable {
 	private String cpf;
 	@ManyToOne
 	@JoinColumn(name = "id_cartao")
-	private Cartao cartao;
+	private CartaoCliente cartao;
 	private BigDecimal limite;
 
 	public ClienteCartao() {
 	}
 
-	public ClienteCartao(UUID id, String cpf, Cartao cartao, BigDecimal limite) {
+	public ClienteCartao(UUID id, String cpf, CartaoCliente cartao, BigDecimal limite) {
 		this.id = id;
 		this.cpf = cpf;
 		this.cartao = cartao;
@@ -54,11 +54,11 @@ public class ClienteCartao implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public Cartao getCartao() {
+	public CartaoCliente getCartao() {
 		return cartao;
 	}
 
-	public void setCartao(Cartao cartao) {
+	public void setCartao(CartaoCliente cartao) {
 		this.cartao = cartao;
 	}
 
