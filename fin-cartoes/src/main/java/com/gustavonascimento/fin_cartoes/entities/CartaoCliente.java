@@ -1,4 +1,4 @@
-package com.gustavonascimento.fin_avaliador.entities;
+package com.gustavonascimento.fin_cartoes.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -6,13 +6,25 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
+import org.hibernate.annotations.UuidGenerator;
+
+import com.gustavonascimento.fin_cartoes.entities.enums.BandeiraCartao;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_cartao_cliente")
 public class CartaoCliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@UuidGenerator
 	private UUID id;
 	private String nome;
-	private String bandeiraCartao;
+	private BandeiraCartao bandeiraCartao;
 	private BigDecimal limiteBasico;
 	private String tipo;
 	private LocalDate vencimento;
@@ -20,12 +32,20 @@ public class CartaoCliente implements Serializable {
 	public CartaoCliente() {
 	}
 
-	public CartaoCliente(UUID id, String nome, String bandeiraCartao, BigDecimal limiteBasico, String tipo,
+	public CartaoCliente(UUID id, String nome, BandeiraCartao bandeiraCartao, BigDecimal limiteBasico, String tipo,
 			LocalDate vencimento) {
 		this.id = id;
 		this.nome = nome;
 		this.bandeiraCartao = bandeiraCartao;
 		this.limiteBasico = limiteBasico;
+		this.tipo = tipo;
+		this.vencimento = vencimento;
+	}
+
+	public CartaoCliente(Cartao cartao, String tipo, LocalDate vencimento) {
+		this.nome = cartao.getNome();
+		this.bandeiraCartao = cartao.getBandeiraCartao();
+		this.limiteBasico = cartao.getLimiteBasico();
 		this.tipo = tipo;
 		this.vencimento = vencimento;
 	}
@@ -46,11 +66,11 @@ public class CartaoCliente implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getBandeiraCartao() {
+	public BandeiraCartao getBandeiraCartao() {
 		return bandeiraCartao;
 	}
 
-	public void setBandeiraCartao(String bandeiraCartao) {
+	public void setBandeiraCartao(BandeiraCartao bandeiraCartao) {
 		this.bandeiraCartao = bandeiraCartao;
 	}
 
@@ -80,7 +100,7 @@ public class CartaoCliente implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(bandeiraCartao, nome);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -92,6 +112,7 @@ public class CartaoCliente implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		CartaoCliente other = (CartaoCliente) obj;
-		return Objects.equals(bandeiraCartao, other.bandeiraCartao) && Objects.equals(nome, other.nome);
+		return Objects.equals(id, other.id);
 	}
+
 }

@@ -2,9 +2,11 @@ package com.gustavonascimento.fin_avaliador.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class CartaoAprovado {
 
+	private UUID id;
 	private String nome;
 	private String bandeiraCartao;
 	private BigDecimal limiteAprovado;
@@ -14,12 +16,22 @@ public class CartaoAprovado {
 	public CartaoAprovado() {
 	}
 
-	public CartaoAprovado(String nome, String bandeiraCartao, BigDecimal limiteAprovado, LocalDate vencimento, String tipo) {
+	public CartaoAprovado(UUID id, String nome, String bandeiraCartao, BigDecimal limiteAprovado, LocalDate vencimento,
+			String tipo) {
+		this.id = id;
 		this.nome = nome;
 		this.bandeiraCartao = bandeiraCartao;
 		this.limiteAprovado = limiteAprovado;
 		this.vencimento = vencimento;
 		this.tipo = tipo;
+	}
+
+	public UUID getId() {
+		return id;
+	}
+
+	public void setId(UUID id) {
+		this.id = id;
 	}
 
 	public String getNome() {
