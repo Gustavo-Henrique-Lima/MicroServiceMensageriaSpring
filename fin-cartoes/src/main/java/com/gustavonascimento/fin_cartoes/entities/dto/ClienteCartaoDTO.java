@@ -12,13 +12,13 @@ public class ClienteCartaoDTO implements Serializable {
 
 	private UUID id;
 	private String cpf;
-	private CartaoDTO cartao;
+	private CartaoClienteDTO cartao;
 	private BigDecimal limite;
 
 	public ClienteCartaoDTO() {
 	}
 
-	public ClienteCartaoDTO(UUID id, String cpf, CartaoDTO cartao, BigDecimal limite) {
+	public ClienteCartaoDTO(UUID id, String cpf, CartaoClienteDTO cartao, BigDecimal limite) {
 		this.id = id;
 		this.cpf = cpf;
 		this.cartao = cartao;
@@ -28,7 +28,7 @@ public class ClienteCartaoDTO implements Serializable {
 	public ClienteCartaoDTO(ClienteCartao entity) {
 		this.id = entity.getId();
 		this.cpf = entity.getCpf();
-		this.cartao = new CartaoDTO(entity.getCartao());
+		this.cartao = new CartaoClienteDTO(entity.getCartao());
 		this.limite = entity.getLimite();
 	}
 
@@ -48,11 +48,11 @@ public class ClienteCartaoDTO implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public CartaoDTO getCartao() {
+	public CartaoClienteDTO getCartao() {
 		return cartao;
 	}
 
-	public void setCartao(CartaoDTO cartao) {
+	public void setCartao(CartaoClienteDTO cartao) {
 		this.cartao = cartao;
 	}
 
